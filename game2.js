@@ -31,27 +31,28 @@ $(document).ready(function () {
         //right: 39
         var code = e.keyCode;
         if (code == a) {
-            sprite.left = !sprite.left;
+            sprite.left = true;
         } else if (code == w) {
-            sprite.up = !sprite.up;
+            sprite.up = true;
         } else if (code == d) {
-            sprite.right = !sprite.right;
+            sprite.right = true;
         } else if (code == s) {
-            sprite.down = !sprite.down;
+            sprite.down = true;
         }
         console.log(code);
     }
+    //hard code to false and true??
 
     function keyupFired(e) {
         var code = e.keyCode;
         if (code == a) {
-            sprite.left = !sprite.left;
+            sprite.left = false;
         } else if (code == w) {
-            sprite.up = !sprite.up;
+            sprite.up = false;
         } else if (code == d) {
-            sprite.right = !sprite.right;
+            sprite.right = false;
         } else if (code == s) {
-            sprite.down = !sprite.down;
+            sprite.down = false;
         }
         console.log(code);
     }
@@ -78,26 +79,50 @@ $(document).ready(function () {
         dx = 0;
         dy = 0;
         if (sprite.right) {
-            dx = 2;
+            dx += 2;
         }
         if (sprite.left) {
-            dx = -2;
+            dx -= 2;
         }
         if (sprite.down) {
-            dy = 2;
+            dy += 2;
         }
         if (sprite.up) {
-            dy = -2;
+            dy -= 2;
         }
         collision();
 
+        //need to update how we detect collision here.
 
+        if(sprite.x + dx > canvas.width - ballRadius || sprite.x + dx < ballRadius){
+            dx = 0;
+        }
+        if(sprite.y + dy > canvas.height - ballRadius || sprite.y + dy < ballRadius){
+            dy = 0;
+        }
 
         sprite.x += dx;
         sprite.y += dy;
 
+        /*console.log('stuff: ' + sprite.left + '\n' + sprite.right);
+        console.log(sprite.up + '\n' + sprite.down);
+        console.log(sprite.x + '\n' + sprite.y);
+
+        if(pause){} else{
+           requestAnimationFrame(draw);
+           })
+        */
         requestAnimationFrame(draw);
     }
+
+    var pause = true;
+
+        $("#Pause").click(function () {
+        pause = !pause;
+        if (!pause) {
+            drawPong();
+        }
+    });
 
     draw();
 });
