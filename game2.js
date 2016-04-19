@@ -72,9 +72,23 @@ $(document).ready(function () {
         ctx.closePath();
     }
 
+    function loadImg() {
+
+    }
+
+    var img = new Image();
+    img.onload = function () {
+        //ctt.drawImage(img, 0, 0, 400, 400);
+        ctx.drawImage(img, sprite.x, sprite.y);
+    }
+    img.src = 'http://localhost:3000/images/helmet.png';
+
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawSprite();
+
+        ctx.drawImage(img, sprite.x, sprite.y);
+
+        //loadImg();
         //collision();
         //set the dx & dy
         dx = 0;
