@@ -91,6 +91,8 @@ $(document).ready(function () {
             dy -= 2;
         }
         collision();
+        //todo: attempt velocity with maximum and
+        //reset to 0 when hitting the boundaries
 
         //need to update how we detect collision here.
 

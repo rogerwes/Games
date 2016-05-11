@@ -3,6 +3,7 @@ var fs = require('fs');
 var app = express();
 app.use(express.static('./'));
 app.use(express.static('images'));
+app.use(express.static('/assets'));
 var game = './game.html';
 
 app.get('/game', function (req, res) {
