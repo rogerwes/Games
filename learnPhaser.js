@@ -6,10 +6,11 @@ window.onload = function () {
     var score = 0;
     var scoreText;
 
-    var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
+    var game = new Phaser.Game(300, 230, Phaser.AUTO, '', {
         preload: preload,
         create: create,
-        update: update
+        update: update,
+        render: render
     });
 
     function preload() {
@@ -25,6 +26,9 @@ window.onload = function () {
 
         //  A simple background for our game
         game.add.sprite(0, 0, 'sky');
+
+        //game.world.setBounds(0, 0, 2000, 2000);
+        game.camera.follow(player);
 
         //  The platforms group contains the ground and the 2 ledges we can jump on
         platforms = game.add.group();
@@ -90,6 +94,11 @@ window.onload = function () {
             fontSize: '32px',
             fill: '#000'
         });
+    }
+
+    function render(){
+        game.debug.cameraInfo(game.camera, 32, 32);
+        game.debug.spriteCoords(player, 32, 500);
     }
 
     function update() {
